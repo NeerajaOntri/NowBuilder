@@ -1,0 +1,42 @@
+---
+title: Configuring Playbooks
+description: Set up and monitor Playbooks and Playbook Experience.
+locale: en-US
+
+release: australia
+product: Workflow Studio
+classification: workflow-studio
+topic_type: concept
+last_updated: "2026-03-12"
+reading_time_minutes: 1
+breadcrumb: [Playbooks, Workflow Studio, Build workflows]
+---
+
+# Configuring Playbooks
+
+Set up and monitor Playbooks and Playbook Experience.
+
+## Configuration Overview
+
+-   You don't need to activate the core Workflow Studio Playbooks feature because it is already part of the ServiceNow AI Platform, but many features are only available with application updates from the ServiceNow Store.
+
+    Download the latest updates for Playbooks from the ServiceNow Store. To get started more quickly, we recommend you download the Process Automation Demo Experience, Process Automation Content, and Playbook Experience applications as well.
+
+-   Configure Playbooks user access and properties.
+-   Configure accessibility preferences to make the Playbooks authoring experience more accessible.
+
+-   **[Activate Playbooks]([external reference omitted])**  
+Activate the Workflow Studio application to create flows, playbooks, and more for any of your use cases.
+-   **[Turn on AI skills for Playbooks]([external reference omitted])**  
+Turn on the ServiceNow Otto for Creator skills for using generative AI for creating and managing Playbooks.
+-   **[Change the default LLM for playbook generation]([external reference omitted])**  
+Choose either the NowLLM/Mixtral model or OpenAI's GPT-4o as the default LLM to generate your playbooks.
+-   **[Managing playbook permissions]([external reference omitted])**  
+Understand which mechanisms control who can build playbooks and who can interact with them while they run.
+-   **[Administering Playbooks]([external reference omitted])**  
+Monitor and troubleshoot issues by reviewing playbook executions.
+-   **[Configure accessibility preferences]([external reference omitted])**  
+View all buttons in a playbook diagram by default, without the need to hover or select any element.
+
+**Parent Topic:**[Workflow Studio Playbooks]([external reference omitted])
+

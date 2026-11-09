@@ -1,0 +1,1597 @@
+{
+ "note": "The Flow Designer vocabulary the ServiceNow SDK (Fluent) can express, read out of @servicenow/sdk-core's own built-in definitions. Keyed by the display name Flow Designer shows, which is also what sys_hub_action_type_definition.name holds. Regenerate with tools/build_flow_catalog.py when the SDK is upgraded.",
+ "sdk_version": "4.14.0",
+ "actions": {
+  "Add Worknote Link to Context": {
+   "api": "action.core.addWorknoteLinkToContext",
+   "sys_id": "fd4a0fb70f003300ecf0cc52ff767e2a",
+   "description": "Adds a Worknote link referencing to the execution context.",
+   "inputs": {
+    "journal_field": {
+     "label": "Journal Field",
+     "type": "FieldName",
+     "mandatory": true
+    },
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": true,
+     "dependent": "table"
+    },
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    },
+    "additional_comments": {
+     "label": "Additional Comments",
+     "type": "String",
+     "mandatory": false
+    }
+   },
+   "outputs": {}
+  },
+  "Ask For Approval": {
+   "api": "action.core.askForApproval",
+   "sys_id": "f8f2e9920b10030085c083eb37673abd",
+   "description": "Create Approvals on any record in the ServiceNow system. You can configure a rule set for an approval, rejection, or cancellation. You can add additional rule sets to further define approval rule(s) and rejection rule(s). If a Due Date is added to an approval, it automatically approves, rejects, or ",
+   "inputs": {
+    "approval_field": {
+     "label": "Approval Field",
+     "type": "FieldName",
+     "mandatory": false
+    },
+    "journal_field": {
+     "label": "Journal Field",
+     "type": "FieldName",
+     "mandatory": false
+    },
+    "due_date": {
+     "label": "Due Date",
+     "type": "ScheduleDateTime",
+     "mandatory": false
+    },
+    "approval_conditions": {
+     "label": "Approval Conditions",
+     "type": "ApprovalRules",
+     "mandatory": true
+    },
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": true,
+     "dependent": "table"
+    },
+    "approval_reason": {
+     "label": "Approval Reason",
+     "type": "String",
+     "mandatory": false
+    }
+   },
+   "outputs": {
+    "approval_state": {
+     "label": "Approval State",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "approved",
+      "cancelled",
+      "not requested",
+      "not_required",
+      "rejected",
+      "requested",
+      "skipped"
+     ]
+    }
+   }
+  },
+  "Associate Record to Email": {
+   "api": "action.core.associateRecordToEmail",
+   "sys_id": "7b95a4c0a73133008299b39f087901b4",
+   "description": "Associate a record with an Email [sys_email] record so that you can track which record is affected by the email. This action updates the Target field on the email record.",
+   "inputs": {
+    "target_record": {
+     "label": "Target Record",
+     "type": "DocumentId",
+     "mandatory": true
+    },
+    "email_record": {
+     "label": "Email Record",
+     "type": "DocumentId",
+     "mandatory": true
+    }
+   },
+   "outputs": {}
+  },
+  "Copy Attachment": {
+   "api": "action.core.copyAttachment",
+   "sys_id": "30fe6cdb0f973300dfd3694e68767e5a",
+   "description": "Copies an attachment to a target record. The source is an attachment record. You can dynamically add and configure fields for the record. Server-side validation rules are enforced (data policy, business rules, dictionary-defined mandatory fields), but UI policy does not apply.",
+   "inputs": {
+    "target_record": {
+     "label": "Target Record",
+     "type": "DocumentId",
+     "mandatory": true,
+     "dependent": "table"
+    },
+    "attachment_record": {
+     "label": "Source Attachment Record",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sys_attachment"
+    },
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    }
+   },
+   "outputs": {}
+  },
+  "Create Catalog Task": {
+   "api": "action.core.createCatalogTask",
+   "sys_id": "af51fd0e73141300612c273ffff6a785",
+   "description": "Creates a Catalog Task on a Service Catalog Request Item [sc_req_item]. The task can be configured to be\n      a blocking or non-blocking task. \n       Pass Catalog Variables to the task to provide additional information or to allow the fulfiller to modify the\n      variables. To pass variables from",
+   "inputs": {
+    "ah_wait": {
+     "label": "Wait",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "ah_fields": {
+     "label": "Fields",
+     "type": "TemplateValue",
+     "mandatory": false,
+     "dependent": "ah_table_name"
+    },
+    "catalog_variables": {
+     "label": "Catalog Variables",
+     "type": "SlushBucket",
+     "mandatory": false
+    },
+    "ah_short_description": {
+     "label": "Short Description",
+     "type": "String",
+     "mandatory": false
+    },
+    "ah_table_name": {
+     "label": "Table Name",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "template_catalog_item": {
+     "label": "Template Catalog Item",
+     "type": "Reference",
+     "mandatory": false,
+     "reference": "sc_cat_item"
+    },
+    "ah_requested_item": {
+     "label": "Requested Item",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sc_req_item"
+    }
+   },
+   "outputs": {
+    "Catalog Task": {
+     "label": "Catalog Task",
+     "type": "DocumentId",
+     "mandatory": false,
+     "dependent": "ah_table_name"
+    }
+   }
+  },
+  "Create Record": {
+   "api": "action.core.createRecord",
+   "sys_id": "2de05916c31332002841b63b12d3aee1",
+   "description": "Creates a record on any ServiceNow table. You can dynamically add and configure fields for the record. Server-side validation rules are enforced (data policy, business rules, dictionary-defined mandatory fields), but UI policy does not apply.",
+   "inputs": {
+    "table_name": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    },
+    "values": {
+     "label": "Fields",
+     "type": "TemplateValue",
+     "mandatory": true,
+     "dependent": "table_name"
+    }
+   },
+   "outputs": {
+    "table_name": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": false,
+     "dependent": "table_name"
+    }
+   }
+  },
+  "Create Task": {
+   "api": "action.core.createTask",
+   "sys_id": "2b3a6335531003003bf1d9109ec58759",
+   "description": "Creates a task on any ServiceNow task table. After you choose the task table, you can dynamically select the fields to configure the action. A Parent field associates to a Parent record (Incident Task to Incident record).  To block the flow until this task is completed, select 'Wait'.",
+   "inputs": {
+    "task_table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    },
+    "wait": {
+     "label": "Wait",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "field_values": {
+     "label": "Field Values",
+     "type": "TemplateValue",
+     "mandatory": false,
+     "dependent": "task_table"
+    }
+   },
+   "outputs": {
+    "Table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "Record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": false,
+     "dependent": "task_table"
+    }
+   }
+  },
+  "Create or Update Record": {
+   "api": "action.core.createOrUpdateRecord",
+   "sys_id": "ab575ae253b3230034c6ddeeff7b12f1",
+   "description": "Create or update a record in a ServiceNow table by determining if it already exists. Add records that do not exist, and update existing ones. Identify existing records by selecting unique fields. Set field values dynamically and enforce server-side validation rules (data policy, business rules, dict",
+   "inputs": {
+    "fields": {
+     "label": "Fields",
+     "type": "TemplateValue",
+     "mandatory": true,
+     "dependent": "table_name"
+    },
+    "table_name": {
+     "label": "Table Name",
+     "type": "TableName",
+     "mandatory": true
+    }
+   },
+   "outputs": {
+    "status": {
+     "label": "Status",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "created",
+      "error",
+      "updated"
+     ]
+    },
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": false,
+     "dependent": "table_name"
+    },
+    "error_message": {
+     "label": "Error Message",
+     "type": "String",
+     "mandatory": false
+    },
+    "table_name": {
+     "label": "Table Name",
+     "type": "TableName",
+     "mandatory": false
+    }
+   }
+  },
+  "Delete Attachment": {
+   "api": "action.core.deleteAttachment",
+   "sys_id": "bdc2a0170f973300dfd3694e68767e47",
+   "description": "Deletes one or more attachment(s) associated with the record. You could delete a single attachment by providing File Name input field .You could also delete all the attachments bound to the record by using Delete All Attachment checbox. Either File Name input field or Delete All Attachments checkbox",
+   "inputs": {
+    "delete_all_": {
+     "label": "Delete All Attachments?",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "attachment_file_name": {
+     "label": "Attachment File Name",
+     "type": "String",
+     "mandatory": false
+    },
+    "record": {
+     "label": "Source Record",
+     "type": "DocumentId",
+     "mandatory": true,
+     "dependent": "table"
+    },
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    }
+   },
+   "outputs": {}
+  },
+  "Delete Record": {
+   "api": "action.core.deleteRecord",
+   "sys_id": "c3e09916c31332002841b63b12d3aedf",
+   "description": "Deletes a record on any ServiceNow table.",
+   "inputs": {
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": true
+    }
+   },
+   "outputs": {}
+  },
+  "Fire Event": {
+   "api": "action.core.fireEvent",
+   "sys_id": "80a30edeff30311077a95dac793bf19b",
+   "description": "This action can be used to fire a specific system event. This action typically passes four parameters that can be used within the event.",
+   "inputs": {
+    "parm1": {
+     "label": "Parameter 1",
+     "type": "String",
+     "mandatory": false
+    },
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": true,
+     "dependent": "table"
+    },
+    "parm2": {
+     "label": "Parameter 2",
+     "type": "String",
+     "mandatory": false
+    },
+    "event_name": {
+     "label": "Event",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sysevent_register"
+    }
+   },
+   "outputs": {}
+  },
+  "Get Attachments on Record": {
+   "api": "action.core.getAttachmentsOnRecord",
+   "sys_id": "082e70db0f4273003788001ea8767e02",
+   "description": "Returns a list and count of the attachments associated with the provided source record. Use flow logic or scripting to process individual attachments. Returns an error if server-side validation such, business rules, or data policies prevent the look up.",
+   "inputs": {
+    "file_name": {
+     "label": "File Name",
+     "type": "String",
+     "mandatory": false
+    },
+    "source_record": {
+     "label": "Source Record",
+     "type": "DocumentId",
+     "mandatory": true,
+     "dependent": "sys_attachment"
+    }
+   },
+   "outputs": {
+    "parameter": {
+     "label": "Attachment List",
+     "type": "Records",
+     "mandatory": false,
+     "reference": "sys_attachment"
+    },
+    "parameter1": {
+     "label": "Count",
+     "type": "Integer",
+     "mandatory": false
+    }
+   }
+  },
+  "Get Catalog Variables": {
+   "api": "action.core.getCatalogVariables",
+   "sys_id": "330ba3abc31013002841b63b12d3aee8",
+   "description": "Surface Catalog Variables on the Flow and/or on a given record. \n     Obtains the catalog variables in a Flow or from a record in a table.\n    Uses an existing catalog item template to populate the available variables.",
+   "inputs": {
+    "catalog_variables": {
+     "label": "Catalog Variables",
+     "type": "SlushBucket",
+     "mandatory": false
+    },
+    "requested_item": {
+     "label": "Submitted Request",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sc_req_item"
+    },
+    "template_catalog_item": {
+     "label": "Template Catalog Items and Variable Sets",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "st_sys_catalog_items_and_variable_sets"
+    }
+   },
+   "outputs": {}
+  },
+  "Get Email Header": {
+   "api": "action.core.getEmailHeader",
+   "sys_id": "a8cfa3efa70223008299b39f0879018b",
+   "description": "Access an email header value data pill. If multiple headers have the same name, then the action gets the value of the first header that appears.",
+   "inputs": {
+    "target_header": {
+     "label": "Target header",
+     "type": "String",
+     "mandatory": true
+    },
+    "email_record": {
+     "label": "Email Record",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sys_email"
+    }
+   },
+   "outputs": {
+    "header_value": {
+     "label": "Header value",
+     "type": "String",
+     "mandatory": false
+    }
+   }
+  },
+  "Get Latest Response Text From Email": {
+   "api": "action.core.getLatestResponseTextFromEmail",
+   "sys_id": "a159d7820f13101051218e8ebc767eea",
+   "description": "This action provides the latest response text from body text of the email thread",
+   "inputs": {
+    "email_record": {
+     "label": "Email Record",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sys_email"
+    }
+   },
+   "outputs": {
+    "latest_response_text": {
+     "label": "Latest Response Text",
+     "type": "String",
+     "mandatory": true
+    }
+   }
+  },
+  "Log": {
+   "api": "action.core.log",
+   "sys_id": "5bc1bcc6531003003bf1d9109ec587d4",
+   "description": "Log a message",
+   "inputs": {
+    "log_level": {
+     "label": "Level",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "error",
+      "info",
+      "warn"
+     ]
+    },
+    "log_message": {
+     "label": "Message",
+     "type": "String",
+     "mandatory": false
+    }
+   },
+   "outputs": {}
+  },
+  "Look Up Attachment": {
+   "api": "action.core.lookupAttachment",
+   "sys_id": "6ecdee36935023005e69925cf67ffb47",
+   "description": "Looks up an attachment and returns the Sys ID of the attachment. If more than one attachment is present, it searches by the file name and returns the Sys ID and if there are duplicate file names then it returns the first Sys ID encountered. A JSON Object is also returned that has all the attachments",
+   "inputs": {
+    "file_name": {
+     "label": "File Name",
+     "type": "String",
+     "mandatory": false
+    },
+    "source_record": {
+     "label": "Source Record",
+     "type": "DocumentId",
+     "mandatory": true
+    }
+   },
+   "outputs": {
+    "parameter1": {
+     "label": "Attachment List",
+     "type": "String",
+     "mandatory": false
+    },
+    "parameter": {
+     "label": "Attachment Sys ID",
+     "type": "String",
+     "mandatory": false
+    }
+   }
+  },
+  "Look Up Email Attachments": {
+   "api": "action.core.lookUpEmailAttachments",
+   "sys_id": "2dbeaf29c7322300f4eba1425a976340",
+   "description": "Retrieve attachment records associated with a particular email record",
+   "inputs": {
+    "email_record": {
+     "label": "Email record",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sys_email"
+    }
+   },
+   "outputs": {
+    "email_attachments": {
+     "label": "Email attachments",
+     "type": "Records",
+     "mandatory": false,
+     "reference": "sys_email_attachment"
+    }
+   }
+  },
+  "Look Up Record": {
+   "api": "action.core.lookUpRecord",
+   "sys_id": "9d09f99587003300663ca1bb36cb0ba3",
+   "description": "Look up a singular record on any ServiceNow table. You can configure the conditions for the record lookup. If multiple records are found, only the first record returns.",
+   "inputs": {
+    "sort_type": {
+     "label": "Sort Type",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "sort_asc",
+      "sort_desc"
+     ]
+    },
+    "conditions": {
+     "label": "Conditions",
+     "type": "Conditions",
+     "mandatory": false
+    },
+    "dont_fail_flow_on_error": {
+     "label": "Don't fail on error",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "sort_column": {
+     "label": "Order by",
+     "type": "FieldName",
+     "mandatory": false
+    },
+    "if_multiple_records_are_found_action": {
+     "label": "If multiple records are found action",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "error",
+      "use_first_record"
+     ]
+    }
+   },
+   "outputs": {
+    "Table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "status": {
+     "label": "Status",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "0",
+      "1"
+     ]
+    },
+    "Record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": false,
+     "dependent": "table"
+    },
+    "error_message": {
+     "label": "Error Message",
+     "type": "String",
+     "mandatory": false
+    }
+   }
+  },
+  "Look Up Records": {
+   "api": "action.core.lookUpRecords",
+   "sys_id": "43400a1587003300663ca1bb36cb0b4b",
+   "description": "Look up multiple records on any ServiceNow table. You can configure the conditions for the records found. The output includes a list of records and the number of records found. Note: The maximum number of records that can be returned is configured by a property and by default is 10K records. If more",
+   "inputs": {
+    "conditions": {
+     "label": "Conditions",
+     "type": "Conditions",
+     "mandatory": false
+    },
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "sort_type": {
+     "label": "Sort Type",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "sort_asc",
+      "sort_desc"
+     ]
+    },
+    "sort_column": {
+     "label": "Order by",
+     "type": "FieldName",
+     "mandatory": false
+    },
+    "max_results": {
+     "label": "Max Results",
+     "type": "Integer",
+     "mandatory": false
+    }
+   },
+   "outputs": {
+    "Table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "Count": {
+     "label": "Count",
+     "type": "Integer",
+     "mandatory": false
+    },
+    "Records": {
+     "label": "Records",
+     "type": "Records",
+     "mandatory": false,
+     "reference": "table",
+     "dependent": "table"
+    }
+   }
+  },
+  "Move Attachment": {
+   "api": "action.core.moveAttachment",
+   "sys_id": "7159823353cc10103a33ddeeff7b1216",
+   "description": "Moves an attachment to a target record. The source is an attachment record. You can dynamically add and configure fields for the record. Server-side validation rules are enforced (data policy, business rules, dictionary-defined mandatory fields), but UI policy does not apply.",
+   "inputs": {
+    "source_attachment_record": {
+     "label": "Source Attachment Record",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sys_attachment"
+    },
+    "target_record": {
+     "label": "Target Record",
+     "type": "DocumentId",
+     "mandatory": true,
+     "dependent": "table"
+    },
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    }
+   },
+   "outputs": {}
+  },
+  "Move Email Attachments to Record": {
+   "api": "action.core.moveEmailAttachmentsToRecord",
+   "sys_id": "bd8fcd48a73133008299b39f087901fc",
+   "description": "Moves all email attachments to a record and updates the email attachments table. To prevent issues with large email messages, the system enforces configured limits on the maximum allowed email body size, total attachment file size, and number of attachments per email.",
+   "inputs": {
+    "target_record": {
+     "label": "Target Record",
+     "type": "DocumentId",
+     "mandatory": true
+    },
+    "email_record": {
+     "label": "Email Record",
+     "type": "DocumentId",
+     "mandatory": true
+    }
+   },
+   "outputs": {}
+  },
+  "Record Producer": {
+   "api": "action.core.recordProducer",
+   "sys_id": "87a397837333001098e194596bf6a7bc",
+   "description": "Creates a record on a table in the system.",
+   "inputs": {
+    "record_table": {
+     "label": "Record Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "catalog_item": {
+     "label": "Catalog Item",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sc_cat_item"
+    },
+    "catalog_item_inputs": {
+     "label": "Catalog Item Inputs",
+     "type": "String",
+     "mandatory": false
+    },
+    "_snc_dont_fail_on_error": {
+     "label": "Don't fail on error",
+     "type": "Boolean",
+     "mandatory": false
+    }
+   },
+   "outputs": {
+    "error_message": {
+     "label": "Error Message",
+     "type": "String",
+     "mandatory": false
+    },
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": false,
+     "dependent": "record_table"
+    },
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "status": {
+     "label": "Status",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  "SLA Percentage Timer": {
+   "api": "action.core.slaPercentageTimer",
+   "sys_id": "a1a50c4573873300d70877186bf6a762",
+   "description": "",
+   "inputs": {
+    "sla_flow_inputs": {
+     "label": "sla_flow_inputs",
+     "type": "FlowObject",
+     "mandatory": false
+    },
+    "percentage": {
+     "label": "Percentage",
+     "type": "Integer",
+     "mandatory": true
+    },
+    "task_sla_record": {
+     "label": "Task SLA Record",
+     "type": "Reference",
+     "mandatory": false,
+     "reference": "task_sla"
+    }
+   },
+   "outputs": {
+    "scheduled_end_date_time": {
+     "label": "Scheduled End Date/Time",
+     "type": "DateTime",
+     "mandatory": false
+    },
+    "status": {
+     "label": "Status",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "cancelled",
+      "completed",
+      "paused",
+      "repair",
+      "skipped"
+     ]
+    },
+    "total_duration": {
+     "label": "Total Duration",
+     "type": "Duration",
+     "mandatory": false
+    }
+   }
+  },
+  "Send Email": {
+   "api": "action.core.sendEmail",
+   "sys_id": "c1806bf4a70323008299b39f087901cb",
+   "description": "Send rich text emails to a comma separated list of email addresses, user records, and group records. If user records do not have an email address configured, the email will not be sent to that user.   Use pills to decorate the subject line and email body. Note: Commas are not required between pills,",
+   "inputs": {
+    "table_name": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "ah_cc": {
+     "label": "CC",
+     "type": "String",
+     "mandatory": false
+    },
+    "watermark_email": {
+     "label": "Include Watermark",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "ah_bcc": {
+     "label": "BCC",
+     "type": "String",
+     "mandatory": false
+    },
+    "ah_subject": {
+     "label": "Subject",
+     "type": "String",
+     "mandatory": true
+    },
+    "ah_body": {
+     "label": "Body",
+     "type": "Html",
+     "mandatory": false
+    },
+    "record": {
+     "label": "Target Record",
+     "type": "DocumentId",
+     "mandatory": false,
+     "dependent": "table_name"
+    },
+    "ah_to": {
+     "label": "To",
+     "type": "String",
+     "mandatory": true
+    }
+   },
+   "outputs": {
+    "email": {
+     "label": "email",
+     "type": "Reference",
+     "mandatory": false,
+     "reference": "sys_email"
+    }
+   }
+  },
+  "Send Notification": {
+   "api": "action.core.sendNotification",
+   "sys_id": "0d8dd9f10f11101051218e8ebc767e27",
+   "description": "Send a notification in one or more formats by a notification record. The notification record you select determines the notification format and recipients.",
+   "inputs": {
+    "table_name": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": false,
+     "dependent": "table_name"
+    },
+    "notification": {
+     "label": "Notification",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sysevent_email_action"
+    }
+   },
+   "outputs": {}
+  },
+  "Send SMS": {
+   "api": "action.core.sendSms",
+   "sys_id": "027499be7333001099792f163cf6a7a7",
+   "description": "Send SMS to user records and group records using email-based SMS. If user records do not have an SMS device configured, an SMS will not be sent to that user.",
+   "inputs": {
+    "recipients": {
+     "label": "Recipients",
+     "type": "String",
+     "mandatory": true
+    },
+    "message": {
+     "label": "Message",
+     "type": "String",
+     "mandatory": true
+    }
+   },
+   "outputs": {
+    "email": {
+     "label": "Email",
+     "type": "Reference",
+     "mandatory": false,
+     "reference": "sys_email"
+    }
+   }
+  },
+  "Submit Catalog Item Request": {
+   "api": "action.core.submitCatalogItemRequest",
+   "sys_id": "c7a04c607312001098e194596bf6a72a",
+   "description": "Creates a requested item [sc_req_item] on a Service Catalog Request [sc_req]. The request can be configured to be a blocking or non-blocking task. \n Pass request variables to the task to provide additional information or to allow the fulfiller to modify the variables.",
+   "inputs": {
+    "catalog_item_inputs": {
+     "label": "Catalog Item Inputs",
+     "type": "String",
+     "mandatory": false
+    },
+    "delivery_address": {
+     "label": "Delivery Address",
+     "type": "String",
+     "mandatory": false
+    },
+    "sysparm_requested_for": {
+     "label": "Requested for",
+     "type": "Reference",
+     "mandatory": false,
+     "reference": "sys_user"
+    },
+    "schedule": {
+     "label": "Schedule",
+     "type": "Reference",
+     "mandatory": false,
+     "reference": "cmn_schedule"
+    },
+    "duration": {
+     "label": "Duration",
+     "type": "Duration",
+     "mandatory": false
+    },
+    "_snc_dont_fail_on_error": {
+     "label": "Don't fail on error",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "catalog_item": {
+     "label": "Catalog Item",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sc_cat_item"
+    },
+    "timeout_flag": {
+     "label": "Enable timeout",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "sysparm_quantity": {
+     "label": "Quantity",
+     "type": "Integer",
+     "mandatory": false
+    },
+    "special_instructions": {
+     "label": "Special Instructions",
+     "type": "String",
+     "mandatory": false
+    },
+    "wait_for_completion": {
+     "label": "Wait for Completion",
+     "type": "Boolean",
+     "mandatory": false
+    }
+   },
+   "outputs": {
+    "error_message": {
+     "label": "Error Message",
+     "type": "String",
+     "mandatory": false
+    },
+    "requested_item": {
+     "label": "Requested Item",
+     "type": "DocumentId",
+     "mandatory": false,
+     "dependent": "catalog_item"
+    },
+    "status": {
+     "label": "Status",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "0",
+      "1",
+      "2"
+     ]
+    }
+   }
+  },
+  "Update Multiple Records": {
+   "api": "action.core.updateMultipleRecords",
+   "sys_id": "9daf2a72c75100105312134c95c26073",
+   "description": "Update Multiple Records on a ServiceNow table. You can configure the conditions for the records to be updated. Server-side validation rules are enforced (data policy, business rules, dictionary-defined mandatory fields), but UI policy does not apply.",
+   "inputs": {
+    "table_name": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    },
+    "conditions": {
+     "label": "Conditions",
+     "type": "Conditions",
+     "mandatory": true
+    },
+    "sort_type": {
+     "label": "Sort Type",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "sort_asc",
+      "sort_desc"
+     ]
+    },
+    "field_values": {
+     "label": "Fields",
+     "type": "TemplateValue",
+     "mandatory": true,
+     "dependent": "table_name"
+    },
+    "sort_column": {
+     "label": "Order by",
+     "type": "FieldName",
+     "mandatory": false
+    },
+    "dont_fail_flow_on_error": {
+     "label": "Don't fail on error",
+     "type": "Boolean",
+     "mandatory": false
+    }
+   },
+   "outputs": {
+    "count": {
+     "label": "Count",
+     "type": "Integer",
+     "mandatory": false
+    },
+    "message": {
+     "label": "Error Message",
+     "type": "String",
+     "mandatory": false
+    },
+    "status": {
+     "label": "Status",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  "Update Record": {
+   "api": "action.core.updateRecord",
+   "sys_id": "f9d01dd2c31332002841b63b12d3aea1",
+   "description": "Update an existing record on a ServiceNow table. You can dynamically add and configure fields for the record. Server-side validation rules are enforced (data policy, business rules, dictionary-defined mandatory fields), but UI policy does not apply.",
+   "inputs": {
+    "table_name": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    },
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": true,
+     "dependent": "table_name"
+    },
+    "values": {
+     "label": "Fields",
+     "type": "TemplateValue",
+     "mandatory": true,
+     "dependent": "table_name"
+    }
+   },
+   "outputs": {
+    "table_name": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": false,
+     "dependent": "table_name"
+    }
+   }
+  },
+  "Wait For Condition": {
+   "api": "action.core.waitForCondition",
+   "sys_id": "89ce8a4187120010663ca1bb36cb0be3",
+   "description": "Wait for condition action causes the flow to wait until the record matches the specified condition. Use this activity to block the flow indefinitely until a particular condition is met. You must populate the condition field.",
+   "inputs": {
+    "timeout_duration": {
+     "label": "Duration",
+     "type": "Duration",
+     "mandatory": false
+    },
+    "table_name": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    },
+    "timeout_schedule": {
+     "label": "Schedule",
+     "type": "Reference",
+     "mandatory": false,
+     "reference": "cmn_schedule"
+    },
+    "timeout_flag": {
+     "label": "Enable timeout",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "record": {
+     "label": "Record",
+     "type": "DocumentId",
+     "mandatory": true,
+     "dependent": "table_name"
+    },
+    "conditions": {
+     "label": "Conditions",
+     "type": "Conditions",
+     "mandatory": true
+    }
+   },
+   "outputs": {
+    "state": {
+     "label": "State",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  "Wait For Email Reply": {
+   "api": "action.core.waitForEmailReply",
+   "sys_id": "8e38de067f0312108e688c90ac866501",
+   "description": "Wait for email reply action causes the flow to wait until an email reply is recieved to the input email record. Use this activity to block the flow indefinitely until the inbound email is received. You must populate the record field with a sys_email record.",
+   "inputs": {
+    "timeout_schedule": {
+     "label": "Schedule",
+     "type": "Reference",
+     "mandatory": false,
+     "reference": "cmn_schedule"
+    },
+    "record": {
+     "label": "Record",
+     "type": "Reference",
+     "mandatory": true,
+     "reference": "sys_email"
+    },
+    "enable_timeout": {
+     "label": "Enable Timeout",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "timeout_duration": {
+     "label": "Duration",
+     "type": "Duration",
+     "mandatory": false
+    }
+   },
+   "outputs": {
+    "state": {
+     "label": "State",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "0",
+      "1"
+     ]
+    },
+    "email_reply": {
+     "label": "Email Reply",
+     "type": "Reference",
+     "mandatory": false,
+     "reference": "sys_email"
+    }
+   }
+  },
+  "Wait For Message": {
+   "api": "action.core.waitForMessage",
+   "sys_id": "605d0ab8931012105cd18166448918db",
+   "description": "Pause a flow until it receives a specific message from the flow API. Specify the string message that resumes running the flow, and optionally provide a time-out value to resume the flow if no message is received after a specific amount of time.",
+   "inputs": {
+    "message": {
+     "label": "Message",
+     "type": "String",
+     "mandatory": true
+    },
+    "enable_timeout": {
+     "label": "Enable timeout",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "timeout": {
+     "label": "Timeout",
+     "type": "Duration",
+     "mandatory": false
+    }
+   },
+   "outputs": {
+    "payload": {
+     "label": "Payload",
+     "type": "String",
+     "mandatory": false
+    }
+   }
+  }
+ },
+ "triggers": {
+  "Created": {
+   "api": "trigger.record.created",
+   "sys_id": "798916a0c31322002841b63b12d3ae7c",
+   "inputs": {
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    },
+    "run_on_extended": {
+     "label": "Run On Extended Tables",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "false",
+      "true"
+     ]
+    },
+    "run_when_setting": {
+     "label": "Run When Session Setting",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "both",
+      "interactive",
+      "non_interactive"
+     ]
+    },
+    "run_flow_in": {
+     "label": "Run flow In",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "any",
+      "background",
+      "foreground"
+     ]
+    },
+    "condition": {
+     "label": "Condition",
+     "type": "Conditions",
+     "mandatory": false
+    },
+    "run_when_user_setting": {
+     "label": "Run When User Setting",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "any",
+      "not_one_of",
+      "one_of"
+     ]
+    },
+    "run_when_user_list": {
+     "label": "Run When User List",
+     "type": "List",
+     "mandatory": false,
+     "reference": "sys_user"
+    }
+   }
+  },
+  "Created or Updated": {
+   "api": "trigger.record.createdOrUpdated",
+   "sys_id": "a45d9180c32222002841b63b12d3aea7",
+   "inputs": {
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    },
+    "run_on_extended": {
+     "label": "Run On Extended Tables",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "false",
+      "true"
+     ]
+    },
+    "run_flow_in": {
+     "label": "Run flow In",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "any",
+      "background",
+      "foreground"
+     ]
+    },
+    "condition": {
+     "label": "Condition",
+     "type": "Conditions",
+     "mandatory": false
+    },
+    "run_when_setting": {
+     "label": "Run When Session Setting",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "both",
+      "interactive",
+      "non_interactive"
+     ]
+    },
+    "run_when_user_list": {
+     "label": "Run When User List",
+     "type": "List",
+     "mandatory": false,
+     "reference": "sys_user"
+    },
+    "run_when_user_setting": {
+     "label": "Run When User Setting",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "any",
+      "not_one_of",
+      "one_of"
+     ]
+    },
+    "trigger_strategy": {
+     "label": "Run Trigger",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "always",
+      "every",
+      "once",
+      "unique_changes"
+     ]
+    }
+   }
+  },
+  "Daily": {
+   "api": "trigger.scheduled.daily",
+   "sys_id": "89142dc0c32222002841b63b12d3ae8a",
+   "inputs": {
+    "time": {
+     "label": "Time",
+     "type": "Time",
+     "mandatory": true
+    }
+   }
+  },
+  "Inbound Email": {
+   "api": "trigger.application.inboundEmail",
+   "sys_id": "6f0180400b320300f4eb8bf637673ad4",
+   "inputs": {
+    "email_conditions": {
+     "label": "Email Conditions",
+     "type": "Conditions",
+     "mandatory": false
+    },
+    "order": {
+     "label": "Order",
+     "type": "Integer",
+     "mandatory": false
+    },
+    "stop_condition_evaluation": {
+     "label": "Stop processing",
+     "type": "Boolean",
+     "mandatory": false
+    },
+    "target_table": {
+     "label": "Reply Record Type",
+     "type": "TableName",
+     "mandatory": false
+    }
+   }
+  },
+  "Knowledge Management": {
+   "api": "trigger.application.knowledgeManagement",
+   "sys_id": "9bdb2c0483331210730e5b43c22bc071",
+   "inputs": {}
+  },
+  "Monthly": {
+   "api": "trigger.scheduled.monthly",
+   "sys_id": "2ca52504c32222002841b63b12d3ae4a",
+   "inputs": {
+    "day_of_month": {
+     "label": "Day of Month",
+     "type": "Integer",
+     "mandatory": true
+    },
+    "time": {
+     "label": "Time",
+     "type": "Time",
+     "mandatory": true
+    }
+   }
+  },
+  "Remote Table Query": {
+   "api": "trigger.application.remoteTableQuery",
+   "sys_id": "778cf3bf37232110aba6473174924b7c",
+   "inputs": {
+    "u_table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": false
+    }
+   }
+  },
+  "Repeat": {
+   "api": "trigger.scheduled.repeat",
+   "sys_id": "f63f0d94c32222002841b63b12d3aeed",
+   "inputs": {
+    "repeat": {
+     "label": "Repeat",
+     "type": "Duration",
+     "mandatory": true
+    }
+   }
+  },
+  "Run Once": {
+   "api": "trigger.scheduled.runOnce",
+   "sys_id": "0a76e504c32222002841b63b12d3aeac",
+   "inputs": {
+    "run_in": {
+     "label": "Run in",
+     "type": "DateTime",
+     "mandatory": true
+    }
+   }
+  },
+  "SLA Task": {
+   "api": "trigger.application.slaTask",
+   "sys_id": "f5ce00a873723300d70877186bf6a759",
+   "inputs": {}
+  },
+  "Service Catalog": {
+   "api": "trigger.application.serviceCatalog",
+   "sys_id": "c43a1011c36813002841b63b12d3ae15",
+   "inputs": {
+    "run_flow_in": {
+     "label": "Run flow In",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "any",
+      "background",
+      "foreground"
+     ]
+    }
+   }
+  },
+  "Updated": {
+   "api": "trigger.record.updated",
+   "sys_id": "bb695e60c31322002841b63b12d3aea5",
+   "inputs": {
+    "table": {
+     "label": "Table",
+     "type": "TableName",
+     "mandatory": true
+    },
+    "run_when_user_list": {
+     "label": "Run When User List",
+     "type": "List",
+     "mandatory": false,
+     "reference": "sys_user"
+    },
+    "run_when_setting": {
+     "label": "Run When Session Setting",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "both",
+      "interactive",
+      "non_interactive"
+     ]
+    },
+    "run_flow_in": {
+     "label": "Run flow In",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "any",
+      "background",
+      "foreground"
+     ]
+    },
+    "run_on_extended": {
+     "label": "Run On Extended Tables",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "false",
+      "true"
+     ]
+    },
+    "condition": {
+     "label": "Condition",
+     "type": "Conditions",
+     "mandatory": false
+    },
+    "run_when_user_setting": {
+     "label": "Run When User Setting",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "any",
+      "not_one_of",
+      "one_of"
+     ]
+    },
+    "trigger_strategy": {
+     "label": "Run Trigger",
+     "type": "Choice",
+     "mandatory": false,
+     "choices": [
+      "always",
+      "every",
+      "once",
+      "unique_changes"
+     ]
+    }
+   }
+  },
+  "Weekly": {
+   "api": "trigger.scheduled.weekly",
+   "sys_id": "cf352104c32222002841b63b12d3ae1f",
+   "inputs": {
+    "day_of_week": {
+     "label": "Day of Week",
+     "type": "DayOfWeek",
+     "mandatory": true
+    },
+    "time": {
+     "label": "Time",
+     "type": "Time",
+     "mandatory": true
+    }
+   }
+  }
+ },
+ "logic": {
+  "Append To Flow Variables": "appendToFlowVariables",
+  "Assign Subflow Outputs": "assignSubflowOutputs",
+  "Catch": "tryCatch",
+  "Do The Following In Parallel": "doInParallel",
+  "Do The Following Until": "doTheFollowingUntil",
+  "Else": "else",
+  "Else If": "elseIf",
+  "End Flow": "endFlow",
+  "Exit Loop": "exitLoop",
+  "For Each": "forEach",
+  "If": "if",
+  "Set Flow Variables": "setFlowVariables",
+  "Skip Iteration": "skipIteration",
+  "Try": "tryCatch",
+  "Wait For A Duration": "waitForADuration"
+ }
+}

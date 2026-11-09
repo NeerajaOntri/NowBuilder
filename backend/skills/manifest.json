@@ -1,0 +1,293 @@
+{
+  "upstream": {
+    "vendorDir": "vendor/servicenow-skills",
+    "license": "Apache-2.0",
+    "note": "ServiceNow skill pack (32 SKILL.md files), Apache-2.0. Reviewed against ServiceNow product documentation (Australia release) and the ServiceNow Fluent / SDK reference in Nov 2026: examples use the global scope and ES5, record field tables match the Table API names nowBuilder writes. nowBuilder's own rules live in nowbuilder/*.md and win over these."
+  },
+  "alwaysSkills": [
+    "servicenow-development-standards"
+  ],
+  "chatSkillPicks": 3,
+  "cannotBuild": [
+    {
+      "what": "Form and list layouts, views, dictionary overrides and changes to out-of-box fields",
+      "instead": "Create new tables and fields as plan rows; say where to place new fields on the form (Configure \u2192 Form Layout) and which list columns to add. Never change an out-of-box field's type or delete fields."
+    },
+    {
+      "what": "Flow Designer custom actions, subflows and classic workflows",
+      "instead": "Flows themselves are planned as flow rows and deployed with the ServiceNow SDK when the backend has an SDK project (otherwise built by hand from the designed steps). nowBuilder doesn't build custom actions, subflows or classic workflows: describe what to build in Flow Designer, and put shared logic in a script include."
+    },
+    {
+      "what": "ACLs",
+      "instead": "Say which table or field needs which operation and role, and that an admin elevates to security_admin to add it."
+    },
+    {
+      "what": "Scripted REST APIs and REST messages",
+      "instead": "Design the script include holding the logic, and describe the resource, method and response the user sets up."
+    },
+    {
+      "what": "Email templates, inbound actions and notification email scripts",
+      "instead": "Put the wording in the notification's subject and body (${field} placeholders, ${URI_REF} for the link). Say when a template or email script would be worth extracting."
+    },
+    {
+      "what": "Anything in the instance's data (users, groups, CIs, knowledge articles)",
+      "instead": "nowBuilder reads data but never creates it. Say what the user needs to add."
+    },
+    {
+      "what": "Service Portal widgets and pages, UI Builder pages and workspaces",
+      "instead": "Describe the widget (HTML template, client controller, server script, options) or the page, and build the script includes and business rules it calls as plan rows."
+    },
+    {
+      "what": "ATF tests and test suites",
+      "instead": "Describe the test steps (impersonate, insert/update, validate) for the user to create in Automated Test Framework, and say how to test each deployed artifact by hand."
+    },
+    {
+      "what": "Import sets, data sources and transform maps",
+      "instead": "Design the staging fields, coalesce key, field maps and transform scripts; build any script include they call as a plan row."
+    },
+    {
+      "what": "Reports, dashboards and Performance Analytics indicators",
+      "instead": "Answer the question now with query_instance_records, and describe the report (table, type, filter, group by) or indicator for the user to create."
+    },
+    {
+      "what": "Virtual Agent topics and Now Assist skills",
+      "instead": "Explain the configuration in Virtual Agent Designer / Now Assist Admin, check the plugin is installed, and build the flows or script includes the topic calls."
+    },
+    {
+      "what": "Order guides, multi-row variable sets and select-box choices on catalog variables",
+      "instead": "Build the catalog item or record producer with its variables as plan rows; describe the order guide or the choices to add on the variable."
+    }
+  ],
+  "stages": {
+    "chat": {
+      "instructions": [
+        "nowbuilder/topic-knowledge.md",
+        "nowbuilder/conversation.md",
+        "nowbuilder/instance-rules.md",
+        "nowbuilder/planning.md",
+        "nowbuilder/design-documents.md",
+        "nowbuilder/flows.md"
+      ],
+      "includeArtifactCatalog": true,
+      "includeLimits": true,
+      "tools": [
+        "propose_plan",
+        "deploy_plan",
+        "get_table_schema",
+        "search_instance_artifacts",
+        "get_instance_artifact",
+        "get_flow_actions",
+        "query_instance_records",
+        "search_servicenow_docs",
+        "read_servicenow_doc"
+      ]
+    },
+    "generate": {
+      "instructions": [
+        "nowbuilder/topic-knowledge.md",
+        "nowbuilder/generation.md",
+        "nowbuilder/instance-rules.md"
+      ],
+      "includeArtifactCatalog": false,
+      "tools": [
+        "search_servicenow_docs",
+        "read_servicenow_doc",
+        "get_table_schema",
+        "search_instance_artifacts",
+        "get_instance_artifact",
+        "get_flow_actions",
+        "get_skill_file"
+      ]
+    },
+    "fix": {
+      "instructions": [
+        "nowbuilder/topic-knowledge.md",
+        "nowbuilder/fixing.md",
+        "nowbuilder/generation.md",
+        "nowbuilder/instance-rules.md"
+      ],
+      "includeArtifactCatalog": false,
+      "tools": [
+        "search_servicenow_docs",
+        "read_servicenow_doc",
+        "get_table_schema",
+        "search_instance_artifacts",
+        "get_instance_artifact",
+        "get_flow_actions",
+        "get_skill_file"
+      ]
+    }
+  },
+  "artifactTypes": {
+    "business_rule": {
+      "label": "Business rule",
+      "table": "sys_script",
+      "skills": [
+        "servicenow-business-rules",
+        "servicenow-javascript",
+        "servicenow-glide-apis"
+      ]
+    },
+    "script_include": {
+      "label": "Script include",
+      "table": "sys_script_include",
+      "skills": [
+        "servicenow-script-includes",
+        "servicenow-javascript",
+        "servicenow-glide-apis"
+      ]
+    },
+    "client_script": {
+      "label": "Client script",
+      "table": "sys_script_client",
+      "skills": [
+        "servicenow-client-scripts",
+        "servicenow-javascript"
+      ]
+    },
+    "ui_policy": {
+      "label": "UI policy",
+      "table": "sys_ui_policy",
+      "skills": [
+        "servicenow-ui-policies-ui-actions"
+      ]
+    },
+    "ui_action": {
+      "label": "UI action",
+      "table": "sys_ui_action",
+      "skills": [
+        "servicenow-ui-policies-ui-actions",
+        "servicenow-javascript"
+      ]
+    },
+    "notification": {
+      "label": "Notification",
+      "table": "sysevent_email_action",
+      "skills": [
+        "servicenow-configuration",
+        "servicenow-incident-management"
+      ]
+    },
+    "flow": {
+      "label": "Flow",
+      "table": "sys_hub_flow",
+      "skills": [
+        "servicenow-flow-designer",
+        "servicenow-workflow-studio"
+      ]
+    },
+    "scheduled_job": {
+      "label": "Scheduled job",
+      "table": "sysauto_script",
+      "skills": [
+        "servicenow-events-scheduled-jobs",
+        "servicenow-javascript",
+        "servicenow-glide-apis"
+      ]
+    },
+    "data_policy": {
+      "label": "Data policy",
+      "table": "sys_data_policy2",
+      "skills": [
+        "servicenow-ui-policies-ui-actions",
+        "servicenow-configuration"
+      ]
+    },
+    "system_property": {
+      "label": "System property",
+      "table": "sys_properties",
+      "skills": [
+        "servicenow-configuration"
+      ]
+    },
+    "event": {
+      "label": "Event registration",
+      "table": "sysevent_register",
+      "skills": [
+        "servicenow-events-scheduled-jobs"
+      ]
+    },
+    "script_action": {
+      "label": "Script action",
+      "table": "sysevent_script_action",
+      "skills": [
+        "servicenow-events-scheduled-jobs",
+        "servicenow-javascript",
+        "servicenow-glide-apis"
+      ]
+    },
+    "table": {
+      "label": "Table",
+      "table": "sys_db_object",
+      "skills": [
+        "servicenow-tables-forms-lists"
+      ]
+    },
+    "field": {
+      "label": "Field",
+      "table": "sys_dictionary",
+      "skills": [
+        "servicenow-tables-forms-lists"
+      ]
+    },
+    "catalog_item": {
+      "label": "Catalog item",
+      "table": "sc_cat_item",
+      "skills": [
+        "servicenow-service-catalog"
+      ]
+    },
+    "record_producer": {
+      "label": "Record producer",
+      "table": "sc_cat_item_producer",
+      "skills": [
+        "servicenow-service-catalog"
+      ]
+    }
+  },
+  "typeInstructions": {
+    "flow": [
+      "nowbuilder/flows.md"
+    ],
+    "business_rule": [
+      "nowbuilder/examples/business_rule.md"
+    ],
+    "script_include": [
+      "nowbuilder/examples/script_include.md"
+    ],
+    "client_script": [
+      "nowbuilder/examples/client_script.md",
+      "nowbuilder/examples/script_include.md"
+    ],
+    "ui_policy": [
+      "nowbuilder/examples/ui_policy.md"
+    ],
+    "ui_action": [
+      "nowbuilder/examples/ui_action.md"
+    ],
+    "notification": [
+      "nowbuilder/examples/notification.md"
+    ],
+    "scheduled_job": [
+      "nowbuilder/examples/scheduled_job.md"
+    ],
+    "data_policy": [
+      "nowbuilder/examples/data_policy.md"
+    ],
+    "system_property": [
+      "nowbuilder/examples/system_property.md"
+    ],
+    "event": [
+      "nowbuilder/examples/event.md"
+    ],
+    "script_action": [
+      "nowbuilder/examples/script_action.md"
+    ],
+    "table": [
+      "nowbuilder/examples/table.md"
+    ],
+    "field": [
+      "nowbuilder/examples/field.md"
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+---
+title: Workflow Studio Playbooks
+description: Workflow Studio playbooks streamline and standardize complex processes. Automate tasks, ensure consistency, and enhance operational efficiency across your organization with intuitive, low-code workflows.
+locale: en-US
+
+release: australia
+product: Workflow Studio
+classification: workflow-studio
+topic_type: reference
+last_updated: "2026-03-12"
+reading_time_minutes: 1
+breadcrumb: [Workflow Studio, Build workflows]
+---
+
+# Workflow Studio Playbooks
+
+Workflow Studio playbooks streamline and standardize complex processes. Automate tasks, ensure consistency, and enhance operational efficiency across your organization with intuitive, low-code workflows.
+
+## Get started
+
+<table id="table_tbx_zny_hgc" class="nav-card presentation"><tbody><tr><td>
+
+[Explore \[Omitted image "bus-explore.svg"\] Alt text:Learn about playbooks]([external reference omitted])
+
+</td><td>
+
+[Configure \[Omitted image "bus-sdlc.svg"\] Alt text:Learn how to configure playbooks]([external reference omitted])
+
+</td><td>
+
+[Build a playbook\[Omitted image "bus-workflow.svg"\] Alt text:Learn how to build a playbook.]([external reference omitted])
+
+</td></tr><tr><td>
+
+[Design Playbook Experience\[Omitted image "bus-manage.svg"\] Alt text:Learn how to design and customize Playbook Experience for end users]([external reference omitted])
+
+</td><td>
+
+[Run a playbook \[Omitted image "bus-integration-and-apis.svg"\] Alt text:Learn about the Playbook Experience for end users]([external reference omitted])
+
+</td><td>
+
+[Reference \[Omitted image "bus-learn.svg"\] Alt text:Get referential information about Playbooks]([external reference omitted])
+
+</td></tr></tbody>
+</table>## Helpful resources
+
+Some ServiceNow resources that can provide you with helpful information are:
+
+-   **\[Omitted image "dcx-icon-community.svg"\]ServiceNow Community**
+
+    Connect with fellow ServiceNow professionals and share intelligent approval best practices at [ServiceNow Community]([external reference omitted])
+
+-   **\[Omitted image "dcx-icon-dev-portal.svg"\] Developer**
+
+    Build custom approval integrations and explore APIs at [developer.servicenow.com]([external reference omitted])
+
+-   **\[Omitted image "dcx-icon-impact.svg"\] Impact**
+
+    Accelerate ROI and amplify your experience at [[external reference omitted]]([external reference omitted])
+
+-   **\[Omitted image "dcx-icon-learning.svg"\] ServiceNow University**
+
+    Build skills with instructor-led and online training on AI-powered approvals at [ServiceNow University]([external reference omitted])
+
+-   **\[Omitted image "dcx-icon.svg"\] General guidelines**
+
+    [Best Practices]([external reference omitted])
+
+-   **\[Omitted image "dcx-icon-partner.svg"\] Partner**
+
+    Grow your business by taking advantage of promotions, news, and marketing tools at [[external reference omitted]]([external reference omitted])
+
+-   **\[Omitted image "dcx-icon.svg"\] ServiceNow**
+
+    Learn more about ServiceNow products and solutions at [[external reference omitted]]([external reference omitted])
+
+-   **\[Omitted image "dcx-icon-store.svg"\] ServiceNow Store**
+
+    Download certified apps and integrations that complement the ServiceNow platform at [[external reference omitted]]([external reference omitted])
+
+-   **\[Omitted image "dcx-icon-support.svg"\] Support**
+    -   Access advice on managing your instances, access self-help, and get technical support at [[external reference omitted]]([external reference omitted])
+    -   Learn more about specific known errors, along with workarounds if any, from [Known Error Portal]([external reference omitted])
+

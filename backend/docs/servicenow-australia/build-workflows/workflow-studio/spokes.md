@@ -1,0 +1,58 @@
+---
+title: Spokes
+description: Add application-specific content to Workflow Studio by installing spokes.
+locale: en-US
+
+release: australia
+product: Workflow Studio
+classification: workflow-studio
+topic_type: concept
+last_updated: "2026-03-12"
+reading_time_minutes: 4
+breadcrumb: [Flow integrations, Flows, subflows, and actions reference, Flows, subflows, and actions, Workflow Studio, Build workflows]
+---
+
+# Spokes
+
+Add application-specific content to Workflow Studio by installing spokes.
+
+A spoke is a scoped application containing Workflow Studio content dedicated to a particular application or record type. For example, the **ITSM Spoke** contains actions for managing Task records such as the **Create Task** action. Spokes are activated when their parent application is activated. For example, the **ITSM Spoke** is activated when the Incident, Problem, and Change applications are activated. Creating a spoke requires familiarity with application development as developers must add Workflow Studio content to a scoped application.
+
+|Spoke|Description|Plugin|Included with|
+|-----|-----------|------|-------------|
+|[Benchmarks Spoke]([external reference omitted])|Provides read-only actions for the read-only Benchmark Recommendation Evaluator flow.|\[com.sn\_bm\_client.spoke\]|[Benchmarks]([external reference omitted]) application.|
+|[Connect spoke]([external reference omitted])|Provides actions to automate the creation of conversations, to add users to a conversation, and to send messages to a conversation. These actions work with Connect API version 3 and later.|\[com.glide.connect\_v3plus.core.ah\]|ServiceNow AI Platform|
+|[Customer Service Spoke]([external reference omitted])|Provides actions for flow designers to use when creating Customer Service Management business processes.|\[com.snc.customer\_service.spoke\]|[Customer Service Management]([external reference omitted]) application|
+|[External Related Files spoke]([external reference omitted])|The External Related Files spoke stores information about files in third-party systems and helps you manage the information.|\[com.sn.external.files\]|ServiceNow AI Platform|
+|[Field Service Spoke]([external reference omitted])|Provides actions for flow designers to use when creating Field Service Management business processes.|\[com.snc.field\_service.spoke\]|[Field Service Management]([external reference omitted]) application|
+|[ITSM spoke]([external reference omitted])|Provides flow and actions associated with ITSM. Requires the ITSM application suite.|\[com.snc.itsm.spoke\]|[IT Service Management]([external reference omitted]) application|
+|[Machine Learning solutions for Flow Designer]([external reference omitted])|Provides actions to make predictions from trained Predictive Intelligence solutions.|\[com.snc.ml\_flowdesigner\]|[Predictive Intelligence]([external reference omitted])|
+|[Robotic Process Automation \(RPA\) Spoke]([external reference omitted])|Provides RPA actions for flow designers to assign users to attended automation process, add work queue items to queue, update work items, fetch process jobs and execution status of a specific process job, trigger a specific bot process, and unassign users from attended automation process.|\[com.sn\_rpa\_foundation\]|[Robotic Process Automation \(RPA\) Hub]([external reference omitted])|
+|[Security Operations spoke]([external reference omitted])|Provides Security Operations actions for flow designers to manage Security Incident Response flow templates.|\[com.snc.secops.spoke\]|[Security Operations]([external reference omitted]) application|
+|[Visual Task Board \(VTB\) Spoke]([external reference omitted])|Provides VTB actions for flow designers to manage the boards, lanes, cards, board members, and assignees.|\[com.glide.ui.vtb.ah\]|ServiceNow AI Platform|
+
+Additional spokes are available with an Integration Hub subscription. To see a list of Integration Hub spokes, see [Integration Hub available\\n spokes]([external reference omitted]). For more information about requesting an Integration Hub subscription, see [Request Integration Hub]([external reference omitted]).
+
+-   **[Benchmarks Spoke]([external reference omitted])**  
+Provides read-only actions for the read-only Benchmark Recommendation Evaluator flow.
+-   **[Connect spoke]([external reference omitted])**  
+Provides actions to automate the creation of conversations, to add users to a conversation, and to send messages to a conversation. These actions work with Connect API version 3 and later.
+-   **[Customer Service Spoke]([external reference omitted])**  
+Provides actions for flow designers to use when creating Customer Service Management business processes. Requires the Customer Service Management \[com.sn\_customerservice\] plugin.
+-   **[External Related Files spoke]([external reference omitted])**  
+The External Related Files spoke stores information about files in third-party systems and helps you manage the information.
+-   **[Field Service Spoke]([external reference omitted])**  
+Provides actions for flow designers to use when creating Field Service Management business processes.
+-   **[ITSM spoke]([external reference omitted])**  
+Provides flow and actions associated with ITSM. Requires the ITSM application suite.
+-   **[Machine Learning solutions for Flow Designer]([external reference omitted])**  
+With Predictive Intelligence for Flow Designer \(com.snc.ml\_flowdesigner\), you can deploy machine learning solutions in your instance. This spoke provides actions to incorporate Predictive Intelligence model predictions into flows.
+-   **[Robotic Process Automation \(RPA\) Spoke]([external reference omitted])**  
+With Robotic Process Automation, your flow designers can use actions to assign and unassign users to and from an attended automation process, add work items to a queue, update work items, fetch process jobs, get the status of a process job, and trigger a bot process.
+-   **[Security Operations spoke]([external reference omitted])**  
+Provides Security Operations actions for flow designers to manage Security Incident Response flow templates.
+-   **[Visual Task Board \(VTB\) Spoke]([external reference omitted])**  
+Provides VTB actions for flow designers to manage the boards, lanes, cards, board members, and assignees.
+
+**Parent Topic:**[Workflow Studio flow integrations]([external reference omitted])
+

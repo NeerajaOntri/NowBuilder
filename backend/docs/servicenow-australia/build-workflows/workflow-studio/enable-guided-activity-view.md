@@ -1,0 +1,66 @@
+---
+title: Enable Guided Activity View
+description: Guide end users through a playbook, step-by-step.
+locale: en-US
+
+release: australia
+product: Workflow Studio
+classification: workflow-studio
+topic_type: task
+last_updated: "2026-03-12"
+reading_time_minutes: 1
+breadcrumb: [Customize Playbook Experience, Design Playbook Experience, Playbooks, Workflow Studio, Build workflows]
+---
+
+# Enable Guided Activity View
+
+Guide end users through a playbook, step-by-step.
+
+## Before you begin
+
+-   Role required: admin or playbook.admin
+-   Familiarize yourself with how to begin customizing the playbook experience in UI Builder. To learn more, see [Customizing the Playbook Experience]([external reference omitted]).
+
+## About this task
+
+Guide end users through a playbook, one activity at a time. If you have a lot of end users encountering issues in a particular area, and you want to walk them through a series of questions that lead to a particular Instruction activity to complete work \(or even KB activity for final instruction\), consider using the **Guided** activity view. There are out-of-the-box playbooks that use the **Guided** activity view for employee self-service requests, such as time off or benefit requests, available through the [Employee Center]([external reference omitted]).
+
+**Note:**
+
+The following configurations and features are not supported for the **Guided** activity view:
+
+-   Parallel activities
+-   Optional activities
+-   The **Pending Item Visibility** configuration in the **Guided Self-Service Experience** playbook experience record in the **Playbook Experiences** list \[sys\_playbook\_experience.list\]
+
+    **Note:** This property is not relevant since there are no pending activities other than the current activity that an end user is in during a **Guided** self-service playbook run.
+
+-   Stage picker components, including filters
+
+## Procedure
+
+1.  Navigate to **All** &gt; **UI Builder**, and open the **Guided Self-Service in Employee Center** experience.
+
+    \[Omitted image "pe-UIB-guided-self-service.png"\] Alt text: Guided Self-Service Employee Center experience in UI Builder
+
+2.  Open the page that you want to enable the Guided activity view for.
+
+    \[Omitted image "pe-guided-ssec-page.png"\] Alt text: Opening the Default page for the Guided Self-Service EC experience in UI Builder
+
+3.  Under **Body** in the component tree, open **Playbook Activity Viewer**.
+
+    \[Omitted image "pe-activity-viewer-component.png"\] Alt text: Opening the Playbook Activity Viewer component in the component tree
+
+    The **Playbook Activity Viewer** panel opens on the right.
+
+4.  In the **Playbook Activity Viewer** panel, under the **Configure** tab, open the **Activity View** drop-down and select **Guided**.
+
+    \[Omitted image "pe-activity-viewer-panel-guided-view.png"\] Alt text: Selecting the Guided activity view
+
+
+## Result
+
+For an end user who is running a playbook, the result is a playbook that runs one activity at a time. If configured, users can still restart the playbook and activities.
+
+\[Omitted image "PE-Guided-Activity-Viewer.gif"\] Alt text: End user experience of a Guided view, Self-Service playbook
+

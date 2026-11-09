@@ -1,0 +1,27 @@
+---
+title: Testing support for playbooks
+description: The Automated Test Framework \(ATF\) can be used to create automated tests to confirm your playbooks run as planned.
+locale: en-US
+
+release: australia
+product: Workflow Studio
+classification: workflow-studio
+topic_type: concept
+last_updated: "2026-03-12"
+reading_time_minutes: 1
+breadcrumb: [Running Playbook Experience, Playbooks, Workflow Studio, Build workflows]
+---
+
+# Testing support for playbooks
+
+The Automated Test Framework \(ATF\) can be used to create automated tests to confirm your playbooks run as planned.
+
+For more information about the Automated Test Framework, see [Automated Test Framework \(ATF\)]([external reference omitted]).
+
+-   **[Configure testing support for playbooks]([external reference omitted])**  
+Configure the Automated Test Framework \(ATF\) to support testing playbooks by authoring tests in the ATF UI on your ServiceNow instance.
+-   **[Run an automated test on a playbook]([external reference omitted])**  
+After creating your test and adding steps, run and monitor the progress of your automated test.
+
+**Parent Topic:**[Running Playbook Experience]([external reference omitted])
+

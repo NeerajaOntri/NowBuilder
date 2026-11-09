@@ -1,0 +1,195 @@
+Version: 4.14.0
+
+# ChoiceColumn
+
+Defines a column that restricts input to a predefined set of options rendered as a dropdown, radio buttons, or other selection widget. Use `choices` to declare the allowed values and `default` to set the initial selection.
+
+## Signature
+
+```
+ChoiceColumn(config)
+```
+
+## Parameters
+
+### config
+
+`C & ChoiceColumnType<TChoices, Type, Default, ReferenceSchema, Dropdown>`
+
+Properties:
+
+- 
+active (optional): `boolean`
+Indicates whether to display the field in list and forms
+
+- 
+array (optional): `boolean`
+Creates another table to store the info that will be captured by this field
+
+- 
+arrayDenormalized (optional): `boolean`
+Keeps the off-row array table and also stores the values on the parent row as a comma-separated string.
+
+- 
+attributes (optional): `Record<string, string | number | boolean>`
+Pairs of any supported dictionary attributes (sys_schema_attribute)
+
+- 
+audit (optional): `boolean`
+Indicates whether to track the creation, update, and deletion of all records in the table.
+
+- 
+choices (optional): `Record<string | number, string | ChoiceConfig | ChoiceConfig[]>`
+Choice values for this field. Keys are the stored values; values are a display label string, a `ChoiceConfig` object, or an array of `ChoiceConfig` objects. Use an array to produce multiple `sys_choice` records for the same value — for example, to supply labels in multiple languages or define dependent-value variants.
+
+ChoiceConfig properties:
+
+- `label` (required): `string` — Display label shown in the UI
+
+- `sequence` (optional): `number` — Sort order for the choice
+
+- `hint` (optional): `string` — Tooltip hint
+
+- `inactive` (optional): `boolean` — Hides the choice from the selection list
+
+- `language` (optional): `string` — BCP 47 language tag for the label (e.g., `'en'`, `'fr'`). Defaults to the project's `defaultLanguage` in `now.config.json`.
+
+- `dependentValue` (optional): `string | number` — Only show when the `dependent` field equals this value
+
+- `inactiveOnUpdate` (optional): `boolean` — Makes the choice inactive after selection
+
+- `synonyms` (optional): `string[]` — Alternate terms that match this choice during typeahead search
+
+- 
+default (optional): `Default | string`
+Default value of the field when creating a record
+
+- 
+dependent (optional): `string`
+limit the values available to select based on the value of the dependent field
+
+- 
+dropdown (optional): `Dropdown | choiceDropdownType`
+
+- 
+dynamicValueDefinitions (optional): `DynamicValueDefinitions<ReferenceSchema>`
+Object literal, specify type and then relevant additional parameters for reference choices and script defaults
+
+- 
+elementReference (optional): `boolean`
+Indicates if the value of this field connotes the "element type"
+
+- 
+functionDefinition (optional): `string`
+Definition of a function that the field performs
+
+- 
+help (optional): `string`
+Help information for the field
+
+- 
+hint (optional): `string`
+Describes field in more verbose form
+
+- 
+label (optional): `string | Documentation[]`
+Unique label for the column that appears on list headers and form fields
+
+- 
+mandatory (optional): `boolean`
+Indicates whether the field must contain a value to save a record
+
+- 
+maxLength (optional): `number | string`
+Maximum length of the field value
+
+- 
+plural (optional): `string`
+Plural form of the field name
+
+- 
+primary (optional): `boolean`
+Indicates the primary key for a table
+
+- 
+readOnly (optional): `boolean`
+Indicates whether you can edit the field value
+
+- 
+readOnlyOption (optional): `readOnlyOptionType`
+Specifies the read-only behavior for the field
+
+- 
+spellCheck (optional): `boolean`
+Enables spell check for this field
+
+- 
+tableReference (optional): `boolean`
+Indicates if the value of this field is a reference to another table in the schema
+
+- 
+textIndex (optional): `boolean`
+Enables a natural language search on this field
+
+- 
+unique (optional): `boolean`
+Creates a unique index on this field
+
+- 
+widget (optional): `string`
+Style for the element type such as "radio"
+
+- 
+xmlView (optional): `boolean`
+Displays the field value as XML
+
+- 
+formula (optional): `string`
+Formula script for a formula-type virtual field. Sets virtual=true and virtual_type='formula'. Mutually exclusive with dynamicValueDefinitions of type 'calculated_value', which uses virtual_type='script'.
+
+- 
+virtualType (optional): `'script' | 'formula'`
+Specifies the type of virtual/calculated field. Derived automatically: 'formula' when formula is set, 'script' when dynamicValueDefinitions type is 'calculated_value'. Only set explicitly to override.
+
+- 
+createRoles (optional): `(string | Role)[]`
+Roles that can create a value in this field.
+
+- 
+readRoles (optional): `(string | Role)[]`
+Roles that can read this field.
+
+- 
+writeRoles (optional): `(string | Role)[]`
+Roles that can write to this field.
+
+- 
+deleteRoles (optional): `(string | Role)[]`
+Roles that can delete a value in this field.
+
+## Usage
+
+```
+import { Table, ChoiceColumn } from '@servicenow/sdk/core';
+
+export default Table({
+    name: 'x_myapp_request',
+    label: 'Request',
+    columns: {
+        priority: ChoiceColumn({
+            label: 'Priority',
+            choices: {
+                1: { label: 'Critical' },
+                2: { label: 'High' },
+                3: { label: 'Medium' },
+                4: { label: 'Low' },
+            },
+            default: '3',
+        }),
+    },
+});
+```
+
+## See
+
+- https://docs.servicenow.com/csh?topicname=table-api-now-ts.html&version=latest

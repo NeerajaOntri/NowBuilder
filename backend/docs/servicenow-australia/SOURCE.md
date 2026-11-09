@@ -1,0 +1,1 @@
+ServiceNowDocs Australia release, October 8 2026 refresh. Upstream [external reference omitted] . Documentation is Apache-2.0 licensed (see LICENSE). Only a task-relevant subset is bundled; not the complete upstream documentation.
