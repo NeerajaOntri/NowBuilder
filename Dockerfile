@@ -22,7 +22,8 @@ WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
-    NOWBUILDER_ENVIRONMENT=production
+    NOWBUILDER_ENVIRONMENT=production \
+    NODE_OPTIONS="--max-old-space-size=1024"
 
 # Install Node.js 22 in the FINAL runtime image.
 # Required for executing the ServiceNow SDK from the backend.
